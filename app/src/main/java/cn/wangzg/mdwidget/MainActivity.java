@@ -1,5 +1,9 @@
 package cn.wangzg.mdwidget;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,15 +13,59 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MainActivity extends AppCompatActivity {
+    List<String> mTitle;
+    List<Fragment> mFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initToolbar();
+        ViewPager mViewPager = findViewById(R.id.viewpager);
+        mTitle = new ArrayList<>();
+        mTitle.add("选项卡一");
+        mTitle.add("选项卡二");
+        mTitle.add("选项卡三");
+        mTitle.add("选项卡四");
 
+        mFragment = new ArrayList<>();
+        mFragment.add(MyFragment.newInstance(mTitle.get(0)));
+        mFragment.add(MyFragment.newInstance(mTitle.get(1)));
+        mFragment.add(MyFragment.newInstance(mTitle.get(2)));
+        mFragment.add(MyFragment.newInstance(mTitle.get(3)));
+
+        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return mFragment.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return mFragment.size();
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mTitle.get(position);
+            }
+        });
+        TabLayout mytab = findViewById(R.id.mytab);
+        mytab.setupWithViewPager(mViewPager);
+
+
+
+//
+//        mytab.addTab(mytab.newTab().setText("选项卡一").setIcon(R.mipmap.ic_launcher));
+//        mytab.addTab(mytab.newTab().setText("选项卡二").setIcon(R.mipmap.ic_launcher));
+//        mytab.addTab(mytab.newTab().setText("选项卡三").setIcon(R.mipmap.ic_launcher));
+//        mytab.addTab(mytab.newTab().setText("选项卡四").setIcon(R.mipmap.ic_launcher));
+        //mytab.addTab(mytab.newTab().setText("选项卡五").setIcon(R.mipmap.ic_launcher));
+        //mytab.addTab(mytab.newTab().setText("选项卡六").setIcon(R.mipmap.ic_launcher));
     }
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

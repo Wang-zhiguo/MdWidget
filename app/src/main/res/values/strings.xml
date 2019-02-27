@@ -4,4 +4,7 @@
     <string name="menu_notification">通知</string>
     <string name="item_one">第一项</string>
     <string name="item_two">第二项</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
