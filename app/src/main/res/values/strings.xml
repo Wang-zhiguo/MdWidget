@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MdWidget</string>
+    <string name="menu_search">搜索</string>
+    <string name="menu_notification">通知</string>
+    <string name="item_one">第一项</string>
+    <string name="item_two">第二项</string>
 </resources>
