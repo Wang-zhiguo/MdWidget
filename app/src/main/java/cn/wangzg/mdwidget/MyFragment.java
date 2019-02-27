@@ -42,10 +42,4 @@ public class MyFragment extends Fragment {
         tv_title.setText(mParam1);
         return view;
     }
-
-
-
-
-
-
 }
